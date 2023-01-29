@@ -7,12 +7,12 @@ start = time.perf_counter()
 
 # Create a function 
 
-def do_something():
+def do_something(sleep_time):
 	
 	""" A Sample Function with time delay to imitate an I/O bound function"""
-	print("Sleeping for 1 second..")
-	time.sleep(1)
-	print("Done sleeping..")
+	print(f"Sleeping for {sleep_time} second(s) ...")
+	time.sleep(sleep_time)
+	print("Done sleeping ...")
 
 # Call the function
 # do_something()
@@ -37,8 +37,9 @@ def do_something():
 thread_list = []
 
 # Using thread.join() in the same loop will result in sequential execution. Create another loop 
+# If the target function needs any arguments it can be passed using the args as a list
 for _ in range(10):
-	t = threading.Thread(target=do_something)
+	t = threading.Thread(target=do_something, args=[1.8])
 	t.start()
 	thread_list.append(t)
 
